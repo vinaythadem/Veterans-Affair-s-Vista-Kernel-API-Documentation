@@ -1,0 +1,231 @@
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Susan Strack, 01/01/01-->
+<!--Revised by Thom Blom, 12/14/05-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>Kernel APIs: SDEA^XUSER</TITLE>
+	 <META NAME="subject" CONTENT="Kernel APIs: DIV4^XUSER">
+	 <META NAME="keywords"
+	  CONTENT="Infrastructure and Security Services,Information Infrastructure Service,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,DIV4^XUSER,DIV4.XUSER,user,controlled subscription">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="common/programmer.css"> 
+  </HEAD> 
+  <BODY> 
+     <!--webbot bot="Include" U-Include="common/banner_api_page-kernel.htm" TAG="BODY" startspan
+     -->
+<!--Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="0"
+	       CELLPADDING="6"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="65"> 
+	  <TR> 
+	    <TD VALIGN="middle"
+	        ALIGN="left"
+	        HEIGHT="30"> 
+		  <IMG SRC="images/kernel_heading_APIs-new.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0" width="429" height="29">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information & Technology (OIT) Banner"
+			   BORDER="0" width="429" height="30">
+	    </TD> 
+		<TD ALIGN="right"
+		    VALIGN="middle"
+		    HEIGHT="30"> 
+		  <P></P>
+		</TD> 
+	  </TR> 
+    </TABLE> 
+  <!--webbot bot="Include" endspan i-checksum="43655"
+     --><P></P> 
+	  
+	 <!-- Content -->
+	 <H3><A NAME="navskip">$$SDEA^XUSER</A>()-Check for Prescribing Privileges</H3> 
+	 <P><B>Reference Type:</B> Supported, <B>Category:</B> User: DEA ePCS Utility <B>Integration Agreement:</B> 2343</P> 
+	 <H4><A NAME="description">Description</A></H4> 
+	 <P>	The $$SDEA^XUSER extrinsic function uses the following "Privileges
+		Algorithm" to check for prescribing privileges:
+     		</P>
+ 	<UL>
+                <LI> 	Blank = never answered (Allow all schedules but system to send the
+			following electronic message: "DEA credentials have not been
+			populated, call TBD responsible person.")  <BR> <BR> </LI>
+                <LI>  	Any or all fields are answered = provide explicit set of permissions (that
+			have been identified).<BR> <BR> </LI>
+                <LI>  	If it is answered that Prescriber has No privileges for all schedules =
+			remove DEA number or VA number from the NEW PERSON (#200) file.<BR><BR> </LI>
+		<LI>    If Prescriber has been issued a DEA number, you have privileges.<BR> <BR> </LI>
+		<LI>    If the Prescriber has been issued a VA number, this is a presumption of privileges.<BR> <BR> </LI>
+
+         </UL>
+
+
+	<P>  
+    	  <br><b>NOTE:</b>	Not all of these checks apply to documentation of non-VA medication.  
+	</P> 
+ 	<P>  
+          <br><b>REF:</b>      This API calls the $$DEA^XUSER()-Get User's DEA Number API.
+        </P>
+	<P>  
+          <br><b>NOTE:</b>      This API was released with Kernel Patch XU*8.0*580, which was
+				created in support of the Drug Enforcement Agency (DEA) e-Prescribing
+				of Controlled Substances (ePCS) Utility. This utility uses Public Key
+				Infrastructure (PKI) and meets the requirements proposed by the DEA
+				Interim Final Rule (IFR) for Electronic Prescriptions for Controlled
+				Substances effective as of June 1, 2010. 
+        </P> 
+	 <H4><A NAME="format">Format</A></H4> 
+	 <PRE>$$SDEA^XUSER([fg,]ien,psdea) </PRE> 
+	 <H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	 <TABLE BORDER="1" CELLPADDING="5" BGCOLOR="#F1F2F3"
+	 BORDERCOLORLIGHT="#F1F2F3" BORDERCOLORDARK="#808080" WIDTH="100%"> 
+		<TR> 
+		 <TD VALIGN="TOP" WIDTH="15%"><B>fg:</B> </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2" WIDTH="85%"> 
+			 <P>	(optional) This flag is used for $$DEA^XUSER call, 
+				see the flag input parameter in the $$DEA^XUSER()-Get 
+				User's DEA Number API.</P>
+			</TD>
+		<TR>
+
+		 <TD VALIGN="TOP" WIDTH="15%"><B>ien:</B> </TD>
+                  <TD VALIGN="TOP" COLSPAN="2" WIDTH="85%">
+                         <P>(required) This is the NEW PERSON (#200) file IEN for the entry to be checked. </P></TD>
+ 		</TR>
+
+	<TR>
+	<TD VALIGN="TOP" WIDTH="15%"><B>psdea:</B> </TD>
+                  <TD VALIGN="TOP" COLSPAN="2" WIDTH="85%">
+                         <P>	(required) This parameter is DEA schedule. DEA schedule
+				is a 2-6 position field. It comes from the DRUG (#50) file
+				in Pharmacy. This API uses this field to verify the provider
+				is allowed to write orders for specific controlled
+				substances. For example, if the schedule is 2A, this
+				indicates a controlled substance, schedule 2.
+				Chart for all values:
+	<UL>
+                <LI>    MANUFACTURED IN PHARMACY  <BR> <BR> </LI>
+                <LI>    SCHEDULE 1 ITEM<BR> <BR> </LI>
+                <LI>    SCHEDULE 2 ITEM<BR> <BR> </LI>
+                <LI>    SCHEDULE 3 ITEM<BR> <BR> </LI>
+                <LI>    SCHEDULE 4 ITEM<BR> <BR> </LI>
+		<LI>    SCHEDULE 5 ITEM<BR> <BR> </LI>
+                <LI>    LEGEND ITEM<BR> <BR>
+				<UL>
+				<LI>    9-OVER-THE-COUNTER<BR> <BR> </LI>
+                		<LI>    L-DEPRESSANTS AND STIMULANTS<BR> <BR> </LI>
+                		<LI>    A-NARCOTICS AND ALCOHOLS<BR> <BR> </LI>
+                		<LI>    P-DATED DRUGS<BR> <BR> </LI>
+                		<LI>    I-INVESTIGATIONAL DRUGS<BR> <BR> </LI>
+				<LI>    M-BULK COMPOUND ITEMS<BR> <BR> </LI>
+                		<LI>    C-CONTROLLED SUBSTANCES-NON NARCOTIC<BR> <BR> </LI>
+                		<LI>    R-RESTRICTED ITEMS<BR> <BR> </LI>
+                		<LI>    S-SUPPLY ITEMS<BR> <BR> </LI>
+                		<LI>    B-ALLOW REFILL (SCH. 3, 4, 5 ONLY)<BR> <BR> </LI>
+				<LI>    W-NOT RENEWABLE<BR> <BR> </LI>
+                		<LI>    F-NON REFILLABLE<BR> <BR> </LI>
+                		<LI>    E-ELECTRONICALLY BILLABLE<BR> <BR> </LI>
+                		<LI>    N-NUTRITIONAL SUPPLEMENT<BR> <BR> </LI>
+                		<LI>    U-SENSITIVE DRUG<BR> <BR> </LI>
+				</UL>
+		</LI>
+	</UL>
+</P></TD>
+		</TR> 
+	 </TABLE> 
+	 <H4><A NAME="output">Output</A></H4> 
+	 <TABLE BORDER="1" CELLPADDING="5" BGCOLOR="#F1F2F3"
+	 BORDERCOLORLIGHT="#F1F2F3" BORDERCOLORDARK="#808080" WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="15%"><B>returns:</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2" WIDTH="85%"> 
+			<P>Returns:</P
+			<P>          DEA# or Facility DEA_"-"_user VA# similar to the $$DEA^XUSER call.</P>
+		<UL>
+                <LI>    1-DEA# is NULL from the $$DEA^XUSER call<BR> <BR> </LI>
+                <LI>    2-When all schedules equals 0.<BR> <BR> </LI>
+                <LI>    4^expiration date-DEA# expiration date has
+			expired. It checks if the DEA# and expiration date
+			are not NULL. The expiration date is returned in
+			external format. </LI>
+		</UL>
+		</TD>
+ 		</TR>
+ 
+	 </TABLE>
+ 
+	 <P>&nbsp;</P> <HR COLOR="003399"> 
+	 <TABLE WIDTH="100%" SUMMARY="This table for layout purposes only"
+	 CLASS="white"> 
+		<TR> 
+		  <TD ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">
+			 <!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm"
+             TAG="BODY" startspan -->
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Intranet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+    <A HREF="http://vaww.vhaco.va.gov/vhacio/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information Home Page">
+	   <ACRONYM TITLE="Office of Information">OI</ACRONYM></A> /
+				 
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Home Page">
+	   <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/iss/site_map.asp"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Infrastructure & Security Services (ISS) Site Map">Site Map</A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P> 
+  <!--webbot bot="Include" endspan i-checksum="53201" --><!--Date content was reviewed or updated--><P ALIGN="CENTER"> Reviewed/Updated: 
+             <!--webbot bot="Timestamp"
+             S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->April 19, 2018<!--webbot bot="Timestamp" endspan i-checksum="21789" -->
+				<BR><BR>If you have questions, need more information, or are having
+				accessibility problems with this website, please contact us by E-Mail:
+				<A
+				HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/apis/x-dea^xuser.shtml"
+				TITLE="Send mail to the Webmasters regarding this page">Webmasters</A>, Phone:
+				510-768-6800, or FAX: 510-768-6850.</P> 
+			 <P>&nbsp; </P></TD> 
+		</TR> 
+	 </TABLE> </BODY>
+</HTML>

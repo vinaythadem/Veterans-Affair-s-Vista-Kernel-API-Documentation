@@ -1,0 +1,183 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information & Technology (OIT)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Susan Strack, 01/01/01-->
+<!--Revised by Thom Blom, 08/07/12-->
+    <META HTTP-EQUIV="Content-Type"
+	      CONTENT="text/html; charset=iso-8859-1"> 
+    <TITLE>Kernel APIs: $$TYPE^XPDPROT</TITLE>
+    <META NAME="subject"
+          CONTENT="Kernel APIs: $$TYPE^XPDPROT">
+    <META NAME="keywords"
+	      CONTENT="Infrastructure and Security Services,Information Infrastructure Service,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$TYPE^XPDPROT,$$TYPE,XPDPROT,protocols,supported">
+    <LINK REL="StyleSheet"
+	       TYPE="text/css"
+	       HREF="common/programmer.css"> 
+  </HEAD> 
+  <BODY> 
+<!--webbot bot="Include" U-Include="common/banner_api_page-kernel.htm" TAG="BODY" startspan -->
+<!--Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="0"
+	       CELLPADDING="6"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="65"> 
+	  <TR> 
+	    <TD VALIGN="middle"
+	        ALIGN="left"
+	        HEIGHT="30"> 
+		  <IMG SRC="images/kernel_heading_APIs-new.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0" width="429" height="29">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information & Technology (OIT) Banner"
+			   BORDER="0" width="429" height="30">
+	    </TD> 
+		<TD ALIGN="right"
+		    VALIGN="middle"
+		    HEIGHT="30"> 
+		  <P></P>
+		</TD> 
+	  </TR> 
+    </TABLE> 
+  <!--webbot bot="Include" endspan i-checksum="43655" --><P></P> 
+<!-- Content -->
+    <H3><A NAME="navskip">$$TYPE^XPDPROT</A>(): Get Protocol Type</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Menu Manager,
+	<B>Integration Agreement:</B> 5567</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>This extrinsic function returns the value of the TYPE field (#4) in the PROTOCOL file (#101) for the input protocol IEN.
+	<br>
+	<br>
+	(<b>NOTE:</b> This API was released with Kernel Patch XU*8.0*547.)</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$LKPROT^XPDPROT(protocol_ien)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+      <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%"><B>protocol_ien:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) The protocol's internal entry number (IEN) in the PROTOCOL file (#101).</P>
+		</TD> 
+	  </TR> 
+	  </TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    COLSPAN="2"
+		    WIDTH="85%"> 
+		  <P>Returns the one character TYPE field (#4) value in the PROTOCOL file (#101) for the input protocol IEN. For example:</P>
+			<ul>
+				<li>A&#8212;Action: Same as the &quot;X&quot; type, except any existing sub-items are <i>not</i> executed.</li>
+				<li>M&#8212;Menu: This type is used for displaying and selecting items.</li>
+				<li>O&#8212;Protocol: This value is strictly related to the Add orders function. It is the same as the &quot;Q&quot; type, except the protocol is the item selected. Protocols are directly executed when encountered.</li>
+				<li>Q&#8212;Protocol Menu: This value is strictly related to the Add orders function. It is used for displaying and selecting orderable items during the add sequence. When this type of protocol is encountered OE/RR will prompt the user with &quot;Select PATIENT:,&quot; &quot;LOCATION:,&quot; and &quot;Provider:,&quot; and execute the transaction logic for the new orders screen.</li>
+				<li>L&#8212;Limited Protocol: This value is strictly related to the Add orders function. It is the same as the &quot;O&quot; type, except any existing sub-items are <i>not</i> executed.</li>
+				<li>X&#8212;Extended Action: Protocols of this type execute the entry action plus all sub-items.</li>
+				<li>D&#8212;Dialog</li>
+				<li>T&#8212;Term</li>
+				<li>E&#8212;Event Driver</li>
+				<li>S&#8212;Subscriber</li>
+			</ul>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<P>&nbsp;</P>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP"
+	        COLSPAN="2">
+<!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm"
+          TAG="BODY" startspan -->
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Intranet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+    <A HREF="http://vaww.vhaco.va.gov/vhacio/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information Home Page">
+	   <ACRONYM TITLE="Office of Information">OI</ACRONYM></A> /
+				 
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Home Page">
+	   <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/iss/site_map.asp"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Infrastructure & Security Services (ISS) Site Map">Site Map</A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P> 
+  <!--webbot bot="Include" endspan i-checksum="53201" --><!--Date content was reviewed or updated--><P ALIGN="CENTER"> Reviewed/Updated: 
+          <!--webbot bot="Timestamp"
+          S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->August 09, 2012<!--webbot bot="Timestamp" endspan i-checksum="21600" -->
+		  <BR>
+		  <BR>
+		  If you have questions, need more information, or are having
+		  accessibility problems with this website, please contact us by E-Mail:
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/apis/x-type^xpdprot.shtml"
+			 TITLE="Send mail to the Webmasters regarding this page">Webmasters</A>, Phone:
+		  510-768-6800, or FAX: 510-768-6850.</P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+  </BODY>
+</HTML>

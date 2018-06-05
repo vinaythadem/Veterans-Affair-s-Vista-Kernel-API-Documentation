@@ -1,0 +1,81 @@
+<HTML> 
+  <HEAD>
+<!-- Authored by OSEHRA -->
+<!-- Revised by Sam Habiel, July 2017 -->
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+    <TITLE>Kernel APIs: $$UES^XLFJSON()</TITLE>
+    <META NAME="subject" CONTENT="Kernel APIs: $$UES^XLFJSON()">
+    <META NAME="keywords"
+	      CONTENT="Infrastructure and Security Services,Information Infrastructure Service,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,supported">
+    <LINK REL="StyleSheet" TYPE="text/css" HREF="common/programmer.css"> 
+  </HEAD> 
+  <BODY> 
+<!--webbot bot="Include" U-Include="common/banner_api_page-kernel.htm" TAG="BODY" startspan -->
+<!--Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="0"
+	       CELLPADDING="6"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="65"> 
+	  <TR> 
+	    <TD VALIGN="middle"
+	        ALIGN="left"
+	        HEIGHT="30"> 
+		  <IMG SRC="images/kernel_heading_APIs-new.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0" width="429" height="29">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information & Technology (OIT) Banner"
+			   BORDER="0" width="429" height="30">
+	    </TD> 
+		<TD ALIGN="right"
+		    VALIGN="middle"
+		    HEIGHT="30"> 
+		  <P></P>
+		</TD> 
+	  </TR> 
+    </TABLE> 
+  <!--webbot bot="Include" endspan i-checksum="43655" --><P></P> 
+<!-- Content -->
+  <H3><A NAME="navskip">$$UES^XLFJSON()</A>: Unescape JSON to a String</H3> 
+	<P>
+  <B>Reference Type:</B> Supported, 
+	<B>Category:</B> Data Security,
+	<B>Integration Agreement:</B> 6682</P> 
+	<H4><A NAME="description">Description</A></H4> 
+  <p>This extrinsic function returns a unescaped string from a JSON format.</p>
+  <blockquote><strong>NOTE:</strong> This API was released with Kernel patch XU*8.0*680.</blockquote>
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>$$UES^XLFJSON(x)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1" CELLPADDING="5" BGCOLOR="#F1F2F3" BORDERCOLORLIGHT="#F1F2F3" BORDERCOLORDARK="#808080" WIDTH="100%"> 
+	  <TR> 
+			<TH VALIGN="TOP" WIDTH="15%">x</TH> 
+			<TD VALIGN="TOP" WIDTH="85%">(required) A JSON escaped string to be unescaped.</TD>
+    </TR>
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1" CELLPADDING="5" BGCOLOR="#F1F2F3" BORDERCOLORLIGHT="#F1F2F3" BORDERCOLORDARK="#808080" WIDTH="100%"> 
+	  <TR> 
+	    <TH VALIGN="TOP" WIDTH="15%">returns:</TD> 
+      <TD VALIGN="TOP" WIDTH="85%">Returns a unescaped string representation of the escaped JSON input string.</TD>
+	  </TR> 
+	</TABLE> 
+	<P>&nbsp;</P>
+  <H4>Example</H4>
+  <pre>
+<strong>&gt;W $$UES^XLFJSON("\\one\\two\\three\\")</strong>
+\one\two\three\
+  </pre>
+	<HR COLOR="003399"> 
+<!-- End Content -->
+  </BODY>
+</HTML>

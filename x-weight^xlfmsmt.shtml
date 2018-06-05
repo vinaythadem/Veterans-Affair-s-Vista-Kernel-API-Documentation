@@ -1,0 +1,225 @@
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Susan Strack, 01/01/01-->
+<!--Revised by Thom Blom, 01/24/07-->
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+    <TITLE>Kernel APIs: $$WEIGHT^XLFMSMT</TITLE>
+    <META NAME="subject" CONTENT="Kernel APIs: $$WEIGHT^XLFMSMT">
+    <META NAME="keywords"
+	      CONTENT="Infrastructure and Security Services,Information Infrastructure Service,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$WEIGHT^XLFMSMT,$$WEIGHT,XLFMSMT,measurement functions,supported">
+    <LINK REL="StyleSheet" TYPE="text/css" HREF="common/programmer.css"> 
+  </HEAD> 
+  <BODY> 
+<!--webbot bot="Include" U-Include="common/banner_api_page-kernel.htm" TAG="BODY" startspan -->
+<!--Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="0"
+	       CELLPADDING="6"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="65"> 
+	  <TR> 
+	    <TD VALIGN="middle"
+	        ALIGN="left"
+	        HEIGHT="30"> 
+		  <IMG SRC="images/kernel_heading_APIs-new.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0" width="429" height="29">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information & Technology (OIT) Banner"
+			   BORDER="0" width="429" height="30">
+	    </TD> 
+		<TD ALIGN="right"
+		    VALIGN="middle"
+		    HEIGHT="30"> 
+		  <P></P>
+		</TD> 
+	  </TR> 
+    </TABLE> 
+  <!--webbot bot="Include" endspan i-checksum="43655" --><P></P> 
+<!-- Content -->
+    <H3><A NAME="navskip">$$WEIGHT^XLFMSMT</A>(): Convert Weight Measurement</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Measurement
+	Functions, <B>Integration Agreement:</B> 3175 &amp; 10143</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>This extrinsic function converts U.S. weights to approximate Metric 
+    weights and vice versa. It returns the equivalent value with units.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$WEIGHT^XLFMSMT(value,from,to)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1" CELLPADDING="5" BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3" BORDERCOLORDARK="#808080" WIDTH="100%" ID="table4"> 
+	  <TR> 
+	    <TD VALIGN="TOP" WIDTH="15%">
+	      <B>value:</B>
+	    </TD> 
+		<TD VALIGN="TOP" WIDTH="85%">
+		  <P>(required) A positive numeric value.</P>
+	    </TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  <B>from:</B>
+		</TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(required) Unit of measure of the value input parameter (see 
+          table under the to input parameter).</P>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>to:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(required) Unit of measure to which the value input parameter is 
+          converted (see table below):
+          <BR>
+          <BR>
+          Valid units in either uppercase or lowercase are:</P>
+          <TABLE BORDER="1" WIDTH="100%" CELLSPACING="3" CELLPADDING="3" ID="table5"
+                 SUMMARY="This table for formatting purposes only.">
+            <TR>
+              <TD WIDTH="50%" BGCOLOR="#DFDFDF">
+                <B>Metric</B>
+              </TD>
+              <TD WIDTH="50%" BGCOLOR="#DFDFDF">
+                <B>US</B>
+              </TD>
+            </TR>
+            <TR>
+              <TD>
+                t&#8212;metric tons
+              </TD>
+              <TD>
+                tn&#8212; tons
+              </TD>
+            </TR>
+            <TR>
+              <TD>
+                kg&#8212;kilograms
+              </TD>
+              <TD>
+                lb&#8212;pounds
+              </TD>
+            </TR>
+            <TR>
+              <TD>
+                g&#8212;grams
+              </TD>
+              <TD>
+                oz&#8212;ounces
+              </TD>
+            </TR>
+            <TR>
+              <TD>
+                mg&#8212;milligram
+              </TD>
+              <TD>
+                gr&#8212;grain
+              </TD>
+            </TR>
+          </TABLE>
+        </TD> 
+      </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1" CELLPADDING="5" BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3" BORDERCOLORDARK="#808080" WIDTH="100%"> 
+	  <TR> 
+        <TD VALIGN="TOP" WIDTH="15%">
+          <B>returns:</B>
+        </TD> 
+		<TD VALIGN="TOP" COLSPAN="2" WIDTH="85%"> 
+	      <P>Returns the weight measurement.</P> 
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example 1</A></H4> 
+	<P>Converting U.S. weight to Metric weight:</P> 
+	<PRE>&gt;<B>S X=$$WEIGHT^XLFMSMT(12,&quot;LB&quot;,&quot;G&quot;)</B>
+
+&gt;<B>W X</B>
+5448 G</PRE> 
+	<H4>Example 2</H4> 
+	<P>Converting Metric weight to U.S. weight:</P> 
+	<PRE>&gt;<B>S X=$$WEIGHT^XLFMSMT(5448,&quot;g&quot;,&quot;lb&quot;)</B>
+
+&gt;<B>W X</B>
+12.011 LB</PRE> 
+	<P></P>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%" SUMMARY="This table for layout purposes only"> 
+	  <TR> 
+	    <TD ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">
+<!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm"
+          TAG="BODY" startspan -->
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Intranet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+    <A HREF="http://vaww.vhaco.va.gov/vhacio/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information Home Page">
+	   <ACRONYM TITLE="Office of Information">OI</ACRONYM></A> /
+				 
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Home Page">
+	   <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/iss/site_map.asp"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Infrastructure & Security Services (ISS) Site Map">Site Map</A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P> 
+  <!--webbot bot="Include" endspan i-checksum="53201" --><!--Date content was reviewed or updated--><P ALIGN="CENTER"> Reviewed/Updated: 
+          <!--webbot bot="Timestamp"
+          S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->August 26, 2011<!--webbot bot="Timestamp" endspan i-checksum="21789" -->
+		  <BR>
+		  <BR>
+		  If you have questions, need more information, or are having
+		  accessibility problems with this website, please contact us by E-Mail:
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/apis/x-weight^xlfmsmt.shtml"
+			 TITLE="Send mail to the Webmasters regarding this page">Webmasters</A>, Phone:
+		  510-768-6800, or FAX: 510-768-6850.</P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+  </BODY>
+</HTML>

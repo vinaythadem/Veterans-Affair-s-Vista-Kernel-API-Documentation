@@ -1,0 +1,344 @@
+<HTML> 
+  <HEAD>
+<!--Office of Information & Technology OIT)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Susan Strack, 01/01/01-->
+<!--Revised by Thom Blom, 08/26/11-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1"> 
+    <TITLE>Kernel APIs: $$SCH^XLFDT</TITLE>
+    <META NAME="subject"
+          CONTENT="Kernel APIs: $$SCH^XLFDT">
+    <META NAME="keywords"
+	      CONTENT="OIT,Infrastructure and Security Services,Information Infrastructure Service,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$SCH^XLFDT,$$SCH,XLFDT,date functions,supported">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="common/programmer.css"> 
+  </HEAD> 
+  <BODY> 
+<!--webbot bot="Include" U-Include="common/banner_api_page-kernel.htm" TAG="BODY" startspan -->
+<!--Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="0"
+	       CELLPADDING="6"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="65"> 
+	  <TR> 
+	    <TD VALIGN="middle"
+	        ALIGN="left"
+	        HEIGHT="30"> 
+		  <IMG SRC="images/kernel_heading_APIs-new.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0" width="429" height="29">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information & Technology (OIT) Banner"
+			   BORDER="0" width="429" height="30">
+	    </TD> 
+		<TD ALIGN="right"
+		    VALIGN="middle"
+		    HEIGHT="30"> 
+		  <P></P>
+		</TD> 
+	  </TR> 
+    </TABLE> 
+  <!--webbot bot="Include" endspan i-checksum="43655" --><P></P> 
+<!-- Content -->
+    <H3><A NAME="navskip">$$SCH^XLFDT</A>(): Next Scheduled Runtime</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Date Functions,
+	<B>Integration Agreement:</B> 10103</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>This extrinsic function returns the next run-time based on Schedule code.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$SCH^XLFDT(schedule_string,base_date[,force_future_flag])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP" WIDTH="15%">
+	      <B>schedule_string:</B>
+	    </TD> 
+		<TD VALIGN="TOP" WIDTH="85%">
+		  <P>(required) Interval to add to base_date, as follows:</P>
+          <UL>
+            <LI>
+              nS&#8212;Add n seconds to base_date.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              nH&#8212;Add n hours to base_date.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              nD&#8212;Add n days to base_date.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              nM&#8212;Add n months to base_date.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              $H;$H;$H&#8212;List of $H dates.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              nM(list)&#8212;Complex month increment. For example: 1M(15,L), 
+              which means schedule it to run every month (1M) on the 15 and 
+              last day of the month (15,L).
+              <BR>
+              <BR>
+              <UL>
+                <LI>
+                  dd[@time]&#8212;Day of month (e.g., 12).
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  nDay[@time]&#8212;day of week in month (e.g., 1M, first Monday); 
+                  (see &quot;Day Code&quot; list that follows).
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  Day.
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  L&#8212;Last day of month.
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  LDay&#8212;Last specific day in month (e.g., LM [last Monday],LT 
+                  [last Tuesday],LW [last Wednesday]...).
+                  <BR>
+                  <BR>
+                </LI>
+              </UL>
+            </LI>
+            <LI>
+              Day[@time]&#8212;Day of week (see &quot;Day Code&quot; list that follows).
+              <BR>
+              <UL>
+                <LI>
+                  Day.
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  D&#8212;Every weekday.
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  E&#8212;Every weekend day (Saturday, Sunday).
+                </LI>
+              </UL>
+              <P><B>Day Code (used in schedule codes above)</B></P>
+              <UL>
+                <LI>
+                  M&#8212;Monday
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  T&#8212;Tuesday
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  W&#8212;Wednesday
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  R&#8212;Thursday
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  F&#8212;Friday
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  S&#8212;Saturday
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  U&#8212;Sunday
+                </LI>
+              </UL>
+            </LI>
+          </UL>
+        </TD> 
+      </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>base_date:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(required) VA FileMan date to which the interval is added.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"><B>force_future_flag:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) If passed with a value of:</P>
+          <UL>
+            <LI>
+              1&#8212;Forces returned date to be in future, by repeatedly adding 
+              interval to base_date until a future date is produced.
+              <BR>
+              <BR>
+             </LI>
+             <LI>
+               Otherwise&#8212;Interval is added once.
+             </LI>
+           </UL>
+         </TD> 
+	   </TR> 
+	 </TABLE> 
+	 <H4><A NAME="output">Output</A></H4> 
+	 <TABLE BORDER="1"
+	        CELLPADDING="5"
+	        BGCOLOR="#F1F2F3"
+	        BORDERCOLORLIGHT="#F1F2F3"
+	        BORDERCOLORDARK="#808080"
+	        WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP" WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP" COLSPAN="2" WIDTH="85%"> 
+		  <P>Returns the next run-time.</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example 1</A></H4> 
+	<P>To schedule something to run every month on the 15<SUP>th</SUP> of the 
+    month at 2:00 p.m. and on the last day of every month at 6:00 p.m., you 
+    would enter the following:</P> 
+	<h5>Middle of the&nbsp;Month: </h5>
+	<PRE>&gt;<B>S X=$$SCH^XLFDT(&quot;1M(15@2PM,L@6PM)&quot;,2931003)</B>
+
+&gt;<B>W X</B>
+2931015.14</PRE> 
+	<h5>End of the Month: </h5>
+	<PRE>&gt;<b>S X=$$SCH^XLFDT(&quot;1M(15@2PM,L@6PM)&quot;,X)</b>
+
+&gt;<B>W X</B>
+2931031.18</PRE> 
+	<H4>Example 2</H4> 
+	<P>To schedule something to run every month on the 15<SUP>th</SUP> of the 
+    month at 11:00 p.m. and on the last day of every month at 8:00 p.m., you 
+    would enter the following:</P> 
+	<h5>Middle of the&nbsp;Month: </h5>
+	<PRE>&gt;<B>S X=$$SCH^XLFDT(&quot;1M(15@11PM,L@8PM)&quot;,2931028)</B>
+
+&gt;<B>W X</B>
+2931031.2</PRE> 
+	<h5>End of the Month: </h5>
+	<PRE>&gt;<b>S X=$$SCH^XLFDT(&quot;1M(15@11PM,L@8PM)&quot;,X)</b>
+
+&gt;<B>W X</B>
+2931115.23</PRE> 
+	<H4>Example 3</H4> 
+	<P>To schedule something to run every 3 months on the last day of the 
+    month at 6:00 p.m., you would enter the following:</P> 
+	<h5>Middle of the&nbsp;Month: </h5>
+	<PRE>&gt;<b>S X=$$SCH^XLFDT(&quot;3M(L@6PM)&quot;,2930927)</b>
+
+&gt;<B>W X</B>
+2930930.18</PRE> 
+	<h5>End of the Month: </h5>
+	<PRE>&gt;<b>S X=$$SCH^XLFDT(&quot;3M(L@6PM)&quot;,X)</b>
+
+&gt;<B>W X</B>
+2931231.18</PRE> 
+	<P>&nbsp;</P>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">
+<!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm"
+             TAG="BODY" startspan -->
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Intranet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+    <A HREF="http://vaww.vhaco.va.gov/vhacio/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information Home Page">
+	   <ACRONYM TITLE="Office of Information">OI</ACRONYM></A> /
+				 
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Home Page">
+	   <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/iss/site_map.asp"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Infrastructure & Security Services (ISS) Site Map">Site Map</A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P> 
+  <!--webbot bot="Include" endspan i-checksum="53201" --><!--Date content was reviewed or updated--><P ALIGN="CENTER"> Reviewed/Updated: 
+             <!--webbot bot="Timestamp"
+             S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->August 26, 2011<!--webbot bot="Timestamp" endspan i-checksum="21789" -->
+		  <BR>
+		  <BR>
+		  If you have questions, need more information, or are having
+		  accessibility problems with this website, please contact us by E-Mail:
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/apis/x-sch^xlfdt.shtml"
+			 TITLE="Send mail to the Webmasters regarding this page">Webmasters</A>, Phone: 510-768-6800, or FAX: 510-768-6850.</P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+  </BODY>
+</HTML>

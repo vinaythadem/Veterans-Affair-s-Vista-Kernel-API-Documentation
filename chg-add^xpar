@@ -1,0 +1,155 @@
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Susan Strack, 01/01/01-->
+<!--Revised by Thom Blom, 12/14/05-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>Kernel APIs: ADD^XPAR()</TITLE>
+	 <META NAME="subject" CONTENT="Kernel APIs: DIV4^XUSER">
+	 <META NAME="keywords"
+	  CONTENT="Infrastructure and Security Services,Information Infrastructure Service,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,DIV4^XUSER,DIV4.XUSER,user,controlled subscription">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="common/programmer.css"> 
+  </HEAD> 
+  <BODY> 
+     <!--webbot bot="Include" U-Include="common/banner_api_page-kernel.htm" TAG="BODY" startspan
+     -->
+<!--Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="0"
+	       CELLPADDING="6"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="65"> 
+	  <TR> 
+	    <TD VALIGN="middle"
+	        ALIGN="left"
+	        HEIGHT="30"> 
+		  <IMG SRC="images/kernel_heading_APIs-new.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0" width="429" height="29">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information & Technology (OIT) Banner"
+			   BORDER="0" width="429" height="30">
+	    </TD> 
+		<TD ALIGN="right"
+		    VALIGN="middle"
+		    HEIGHT="30"> 
+		  <P></P>
+		</TD> 
+	  </TR> 
+    </TABLE> 
+  <!--webbot bot="Include" endspan i-checksum="43655"
+     --><P></P> 
+	  
+	 <!-- Content -->
+	 <H3><A NAME="navskip">ADD^XPAR()</A>()-Add Parameter Value</H3> 
+	 <P><B>Reference Type:</B> Supported, <B>Category:</B> Toolkit—Parameter Tools <B>Integration Agreement:</B> 2263</P> 
+	 <H4><A NAME="description">Description</A></H4> 
+	 <P>	The ADD^XPAR API adds a new parameter value as an entry to the
+		PARAMETERS (#8989.5) file if the Entity/Parameter/Instance combination does
+		not already exist.
+     		</P>
+
+	<P>  
+    	  <br><b>REF:</b>	For descriptive information about the elements and how they are
+				used in the callable entry points into XPAR
+	</P> 
+	 <H4><A NAME="format">Format</A></H4> 
+	 <PRE>ADD^XPAR(entity,parameter[,instance],value[,.error])</PRE> 
+	 <H4><A NAME="input_parameters">Input/Output Parameters</A></H4> 
+	 <TABLE BORDER="1" CELLPADDING="5" BGCOLOR="#F1F2F3"
+	 BORDERCOLORLIGHT="#F1F2F3" BORDERCOLORDARK="#808080" WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="15%"><B>See EN^XPAR  </B> </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2" WIDTH="85%"> 
+			 <P>	For the definition of the input and output parameters used
+				in this API, see the EN^XPAR(): Add, Change, Delete
+				Parameters API."</P></TD> 
+		</TR> 
+	<H4><A NAME="example">Example </A></H4>
+         <P>The following are the data values for this example:</P>
+         <UL>
+                <LI>DEA# (#53.2) field = "AB1234567"<BR> <BR> </LI>
+                <LI>FACILITY DEA NUMBER field (#52) = "VA7654321"<BR> <BR> </LI>
+                <LI>VA# field (#53.3) = "789"</LI>
+         </UL>
+         <P>If the FLAG input parameter is null or "0", this API would return
+                "AB1234567,"</P>
+         <P> If the FLAG input parameter is "1", this API would return "AB1234567,"</P>
+ 
+
+
+
+	 <P>&nbsp;</P> <HR COLOR="003399"> 
+	 <TABLE WIDTH="100%" SUMMARY="This table for layout purposes only"
+	 CLASS="white"> 
+		<TR> 
+		  <TD ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">
+			 <!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm"
+             TAG="BODY" startspan -->
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Intranet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+    <A HREF="http://vaww.vhaco.va.gov/vhacio/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information Home Page">
+	   <ACRONYM TITLE="Office of Information">OI</ACRONYM></A> /
+				 
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Home Page">
+	   <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/iss/site_map.asp"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Infrastructure & Security Services (ISS) Site Map">Site Map</A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P> 
+  <!--webbot bot="Include" endspan i-checksum="53201" --><!--Date content was reviewed or updated--><P ALIGN="CENTER"> Reviewed/Updated: 
+             <!--webbot bot="Timestamp"
+             S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->April 19, 2018<!--webbot bot="Timestamp" endspan i-checksum="21789" -->
+				<BR><BR>If you have questions, need more information, or are having
+				accessibility problems with this website, please contact us by E-Mail:
+				<A
+				HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/apis/x-dea^xuser.shtml"
+				TITLE="Send mail to the Webmasters regarding this page">Webmasters</A>, Phone:
+				510-768-6800, or FAX: 510-768-6850.</P> 
+			 <P>&nbsp; </P></TD> 
+		</TR> 
+	 </TABLE> </BODY>
+</HTML>

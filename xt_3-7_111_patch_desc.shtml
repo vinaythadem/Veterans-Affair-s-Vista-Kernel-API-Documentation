@@ -1,0 +1,231 @@
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Susan Strack, 01/01/01-->
+<!--Revised by Susan Strack, 12/29/08-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1"> 
+    <TITLE>Toolkit APIs: Toolkit&#8212;Data Standardization APIs</TITLE>
+    <META NAME="subject"
+          CONTENT="Toolkit APIs: xt_3-7_111_patch_desc">
+    <META NAME="keywords"
+	      CONTENT="VUID,DATA STANDARDIZATION,TERM,REPLACEMENT TERM,VistA Legacy,OED,Office of Enterprise Development,VHA Unique ID (VUID),Infrastructure and Security Services,Information Infrastructure Service,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$GETMASTR^XTID,GETMASTR,XTID,data standardization,supported">
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/programmer.css"> 
+  </HEAD> 
+  <BODY> 
+<!--webbot bot="Include" U-Include="common/banner_api_page-toolkit.htm" TAG="BODY" startspan -->
+<!--Title Banner (image)-->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+           CELLSPACING="0"
+           CELLPADDING="6"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="65"> 
+      <TR> 
+	    <TD VALIGN="middle"
+	        ALIGN="left"
+	        HEIGHT="30"> 
+		  <IMG SRC="images/toolkit_heading_APIs-new.gif"
+			   ALT="Toolkit 7.3 APIs Banner"
+			   BORDER="0" width="429" height="29">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information & Technology (OIT) Banner"
+			   BORDER="0" width="429" height="30">
+			 </P>
+		</TD> 
+		<TD ALIGN="right"
+		    VALIGN="middle"
+		    HEIGHT="30"> 
+		  <P></P>
+        </TD> 
+	  </TR> 
+    </TABLE> 
+  <!--webbot bot="Include" endspan i-checksum="4890" --><P></P> 
+<!-- Content -->
+    <H3><A NAME="navskip">Data Standardization APIs</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Toolkit-Data 
+	Standardization,
+	<B>Integration Agreement:</B> 5078</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The Data Standardization API set has been developed to support Data Standardization's effort to allow the mapping of one term to another term. Mapping of terms is done via the REPLACED BY VHA STANDARD TERM field (#99.97) and provides the high level goals of:</P>
+<ol>
+	<li>Non-standard terms inheriting standardized characteristics.</li>
+	<li>Deprecating a term and replacing it with a new term.</li>
+</ol>
+	 The Data Standardization API set:<ol>
+	<li>Maps one term to another term.</li>
+	<li>Obtains the term in which another term is mapped. </li>
+	<li>Extracts field values from the term in which another term is mapped.
+	</li>
+	<li>Shows the mapping relationships that a term has with other terms.
+	</li>
+</ol>
+Keywords:<ul>
+	<li>VHA Unique ID (VUID)</li>
+	<li>Data Standardization</li>
+	<li>Term</li>
+	<li>Replacement Term</li>
+</ul>
+<h4>
+<b><a name="Replacement_Relationships">Replacement Relationships</a></b></h4>
+<p>Use the following replacement relationships to map the Data Standardization 
+API set in context. </p>
+</p>
+
+
+<pre>&nbsp;&nbsp;&nbsp;&nbsp; A --&gt; B --&gt; C --&gt; D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A is replaced by B&nbsp;&nbsp;&nbsp;&nbsp; G is replaced by C 
+&nbsp;&nbsp;&nbsp; ^ ^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^ ^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; B is replaced by C&nbsp;&nbsp;&nbsp;&nbsp; H is replaced by C 
+&nbsp;&nbsp;&nbsp; |&nbsp; \&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; \&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C is replaced by D&nbsp;&nbsp;&nbsp;&nbsp; I is replaced by F 
+&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; \&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; \&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D has no replacement&nbsp;&nbsp; J is replaced by F 
+&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; \&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; \&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; E is replaced by A&nbsp;&nbsp;&nbsp;&nbsp; K is replaced by H 
+&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; F&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; F is replaced by A&nbsp;&nbsp;&nbsp;&nbsp; L is replaced by H 
+&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; ^ ^&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; ^ ^
+&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; /&nbsp;&nbsp; \&nbsp;&nbsp; |&nbsp;&nbsp; /&nbsp;&nbsp; \
+&nbsp;&nbsp;&nbsp; E&nbsp; I&nbsp;&nbsp;&nbsp;&nbsp; J&nbsp; G&nbsp; K&nbsp;&nbsp;&nbsp;&nbsp; L </pre>&nbsp;&nbsp; $$GETRPLC(B) would return C <br><br>
+&nbsp;&nbsp; $$RPLCMNT(B) would return D <br><br>
+&nbsp;&nbsp; $$RPLCVALS(J) would return the requested field values from entry D <br><br>
+&nbsp;&nbsp; $$RPLCTRL(G) in both directions would return D and the output array 
+would&nbsp;be set as follows:<br><br>
+
+<pre>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,A) = B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OutArr(&quot;FOR&quot;,A,E) = &quot;&quot; <br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,B) = C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,A,F) = &quot;&quot; <br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,C) = D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,B,A) = &quot;&quot; <br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,D) = &quot;&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,C,B) = &quot;&quot;
+<br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,E) = A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,C,G) = &quot;&quot;
+<br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,F) = A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,C,H) = &quot;&quot;
+<br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,G) = C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,D,C) = &quot;&quot; <br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,H) = C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,F,I) = &quot;&quot; <br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,I) = F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,F,J) = &quot;&quot;
+<br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,J) = F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,H,K) = &quot;&quot; <br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,K) = H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,H,L) = &quot;&quot; <br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,L) = H</pre>
+
+
+&nbsp;&nbsp; $$RPLCTRL(L) in the forward direction would return D and the output 
+array would be set as follows:&nbsp; </p>
+
+<pre>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,C) = D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,C,H) = &quot;&quot;
+&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,D) = &quot;&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OutArr(&quot;FOR&quot;,D,C) = &quot;&quot; 
+&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,H) = C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OutArr(&quot;FOR&quot;,H,L) = &quot;&quot;
+&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,L) = H &nbsp;&nbsp;&nbsp; </pre>
+<p>&nbsp;&nbsp; $$RPLCTRL(B) in the backward direction would return D and the 
+output array would be set as follows: </p>
+
+<pre>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,A) = B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,A,E) = &quot;&quot;
+<br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,E) = A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OutArr(&quot;FOR&quot;,A,F) = &quot;&quot;
+<br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,F) = A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,B,A) = &quot;&quot;
+<br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,I) = F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,F,I) = &quot;&quot;
+<br>&nbsp;&nbsp;&nbsp; OutArr(&quot;BY&quot;,J) = F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;FOR&quot;,F,J) = &quot;&quot;
+</pre>
+
+
+&nbsp;&nbsp; $$RPLCLST(G) in both directions would return D and the output array 
+would be set as follows: 
+
+<pre>&nbsp;&nbsp;&nbsp; OutArr(1) = G ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      OutArr(&quot;INDEX&quot;,A) = 8
+&nbsp;&nbsp;&nbsp; OutArr(2) = C ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,B) = 7
+&nbsp;&nbsp;&nbsp; OutArr(3) = D ^ 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,C) = 2
+&nbsp;&nbsp;&nbsp; OutArr(4) = H ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,D) = 3
+&nbsp;&nbsp;&nbsp; OutArr(5) = K ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,E) = 9
+ &nbsp;&nbsp; OutArr(6) = L ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,F) = 10
+&nbsp;&nbsp;&nbsp; OutArr(7) = B ^ 0&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,G) = 1
+&nbsp;&nbsp;&nbsp; OutArr(8) = A ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,H) = 4
+&nbsp;&nbsp;&nbsp; OutArr(9) = E ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,I) = 11
+&nbsp;&nbsp;&nbsp; OutArr(10) = F ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,J) = 12
+&nbsp;&nbsp;&nbsp; OutArr(11) = I ^ 0&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,K) = 5
+&nbsp;&nbsp;&nbsp; OutArr(12) = J ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OutArr(&quot;INDEX&quot;,L) = 6 &nbsp;&nbsp; </pre> </p>
+<p>&nbsp;&nbsp; $$RPLCLST(L) in the forward direction would return D and the output 
+array would be set as follows if the status history was also included: &nbsp; &nbsp;</p>
+
+<pre>    OutArr(1) = L ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,C) = 3
+&nbsp;&nbsp;&nbsp; OutArr(1,3080101.0954) = 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,D) = 4
+&nbsp;&nbsp;&nbsp; OutArr(2) = H ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,H) = 2
+&nbsp;&nbsp;&nbsp; OutArr(2,3080101.1308) = 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,L) = 1
+&nbsp; &nbsp;&nbsp;OutArr(2,3080105.09) = 0 
+&nbsp;&nbsp;&nbsp; OutArr(3) = C ^ 0 
+&nbsp;&nbsp;&nbsp; OutArr(3,3080105.0859) = 1 
+&nbsp;&nbsp;&nbsp; OutArr(3,3080112.1722) = 0 
+&nbsp;&nbsp;&nbsp; OutArr(4) = D ^ 1 
+&nbsp;&nbsp;&nbsp; OutArr(4,3080112.1723) = 1&nbsp;&nbsp; </pre>
+<p>&nbsp;&nbsp; $$RPLCLST(B) in the backward direction would return D and the 
+output array would be set as follows:&nbsp;&nbsp;&nbsp; </p>
+</p>
+
+<pre>&nbsp;&nbsp;&nbsp; OutArr(1) = A ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,A) = 1
+&nbsp;&nbsp;&nbsp; OutArr(2) = E ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,E) = 2
+&nbsp;&nbsp;&nbsp; OutArr(3) = F ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,F) = 3
+&nbsp;&nbsp;&nbsp; OutArr(4) = I ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,I) = 4
+&nbsp;&nbsp;&nbsp; OutArr(5) = J ^ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutArr(&quot;INDEX&quot;,J) = 5
+</pre>
+ 
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">
+<!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm"
+          TAG="BODY" startspan -->
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Intranet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+    <A HREF="http://vaww.vhaco.va.gov/vhacio/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information Home Page">
+	   <ACRONYM TITLE="Office of Information">OI</ACRONYM></A> /
+				 
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Home Page">
+	   <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/iss/site_map.asp"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Infrastructure & Security Services (ISS) Site Map">Site Map</A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P> 
+  <!--webbot bot="Include" endspan i-checksum="53201" --><!--Date content was reviewed or updated--><P ALIGN="CENTER"> Reviewed/Updated: 
+          <!--webbot bot="Timestamp"
+          S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->August 26, 2011<!--webbot bot="Timestamp" endspan i-checksum="21789" -->
+		  <BR>
+		  <BR>
+		  If you have questions, need more information, or are having
+		  accessibility problems with this website, please contact us by E-Mail:
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/apis/xt_3-7_111_patch_desc.shtml"
+		     TITLE="Send mail to the Webmasters regarding this page">Webmasters</A>, Phone:
+		  510-768-6800, or FAX: 510-768-6850.</P><P>&nbsp;</P>
+		</TD> 
+	  </TR> 
+    </TABLE>
+  </BODY>
+</HTML>

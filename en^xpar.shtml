@@ -1,0 +1,220 @@
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Susan Strack, 01/01/01-->
+<!--Revised by Thom Blom, 12/14/05-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>Kernel APIs: EN^XPAR()</TITLE>
+	 <META NAME="subject" CONTENT="Kernel APIs: DIV4^XUSER">
+	 <META NAME="keywords"
+	  CONTENT="Infrastructure and Security Services,Information Infrastructure Service,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,DIV4^XUSER,DIV4.XUSER,user,controlled subscription">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="common/programmer.css"> 
+  </HEAD> 
+  <BODY> 
+     <!--webbot bot="Include" U-Include="common/banner_api_page-kernel.htm" TAG="BODY" startspan
+     -->
+<!--Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="0"
+	       CELLPADDING="6"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="65"> 
+	  <TR> 
+	    <TD VALIGN="middle"
+	        ALIGN="left"
+	        HEIGHT="30"> 
+		  <IMG SRC="images/kernel_heading_APIs-new.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0" width="429" height="29">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information & Technology (OIT) Banner"
+			   BORDER="0" width="429" height="30">
+	    </TD> 
+		<TD ALIGN="right"
+		    VALIGN="middle"
+		    HEIGHT="30"> 
+		  <P></P>
+		</TD> 
+	  </TR> 
+    </TABLE> 
+  <!--webbot bot="Include" endspan i-checksum="43655"
+     --><P></P> 
+	  
+	 <!-- Content -->
+	 <H3><A NAME="navskip">EN^XPAR()</A>-Add, Change, Delete Parameters</H3> 
+	 <P><B>Reference Type:</B> Supported, <B>Category:</B> Toolkit-Parameter Tools <B>Integration Agreement:</B> 2263</P> 
+	 <H4><A NAME="description">Description</A></H4> 
+	 <P>	The EN^XPAR API performs any one of the following functions: 
+     		</P>
+  			<UL>
+                               <LI>Adds the value as a new entry to the PARAMETERS (#8989.5) file if the
+				Entity|Parameter|Instance combination does not already exist.</LI>
+				<LI>Changes the value assigned to the parameter in the PARAMETERS
+				(#8989.5) file if the Entity|Parameter|Instance combination already
+				exists.
+                                </LI>
+				<LI>Deletes the parameter instance in the PARAMETERS (#8989.5) file if
+				the value assigned is @. <BR><BR></LI>
+                         </UL> 
+
+	 <H4><A NAME="format">Format</A></H4> 
+	 <PRE>EN^XPAR(entity,parameter[,instance],value[,.error])</PRE>
+         <H4><A NAME="input_parameters">Input Parameters</A></H4>
+         <TABLE BORDER="1" CELLPADDING="5" BGCOLOR="#F1F2F3"
+         BORDERCOLORLIGHT="#F1F2F3" BORDERCOLORDARK="#808080" WIDTH="100%">
+                <TR>
+                  <TD VALIGN="TOP" WIDTH="15%"><B>entity:</B> </TD>
+                  <TD VALIGN="TOP" COLSPAN="2" WIDTH="85%">
+                         <P>  	(required) Entity can be set to the following: 
+                               </P>
+			<UL>
+			<LI>Internal VARIABLE POINTER (nnn;GLO(123,).</LI>
+			<LI>External format of the VARIABLE POINTER using the three-character prefix (prefix.entryname).</LI>
+			<LI>Prefix alone to set the parameter based on the current entity selected.</LI>  
+			</UL>
+			<P>This works for the following entry</P>
+			<UL> 
+			<LI>USR-Uses current value of DUZ. </LI>
+                        <LI>DIV-Uses current value of DUZ(2). </LI>
+                        <LI>SYS-Uses system (domain)</LI>
+			<LI>PKG-Uses the package to which the parameter belongs. </LI>
+			</UL>
+
+			</TD>
+                </TR>
+       		<TR>
+		<TD VALIGN="TOP" WIDTH="15%"><B>parameter:</B> </TD>
+                  <TD VALIGN="TOP" COLSPAN="2" WIDTH="85%">
+                         <P>   (required) Can be passed in external or internal format.
+				Identifies the name or internal entry number (IEN) of the
+				parameter as defined in the PARAMETER DEFINITION
+				(#8989.51) file. 
+                               </P>	
+		</TD>
+		</TR>
+		  <TR>
+                <TD VALIGN="TOP" WIDTH="15%"><B>instance:</B> </TD>
+                  <TD VALIGN="TOP" COLSPAN="2" WIDTH="85%">
+        		<P>(optional) Defaults to 1 if not passed. Can be passed in
+			external or internal format. Internal format requires that
+			the value be preceded by the grave accent (`) character.        
+	               </P>
+                </TD>
+                </TR>  <TR>
+                <TD VALIGN="TOP" WIDTH="15%"><B>value</B> </TD>
+                  <TD VALIGN="TOP" COLSPAN="2" WIDTH="85%">
+                <P>(required) Can be passed in external or internal format. If
+		using internal format for a POINTER type parameter, the
+		value must be preceded by the grave accent (`) character.
+		<br>If the value is being assigned to a WORD-PROCESSING
+		parameter, the text can be passed in the subordinate nodes
+		of Value [e.g., Value(1,0)=Text] and the variable "Value"
+		itself can be defined as a title or description of the text.               
+		</P>
+                </TD>
+                </TR>
+ </TABLE>
+ <H4><A NAME="input_parameters">Output Parameters</A></H4>
+         <TABLE BORDER="1" CELLPADDING="5" BGCOLOR="#F1F2F3"
+         BORDERCOLORLIGHT="#F1F2F3" BORDERCOLORDARK="#808080" WIDTH="100%">
+                <TR>
+                  <TD VALIGN="TOP" WIDTH="15%"><B>.error: </B> </TD>
+                  <TD VALIGN="TOP" COLSPAN="2" WIDTH="85%">
+                         <P>    (optional) If used, must be passed in by reference. It
+				returns any error condition that may occur: 
+                               </P>
+                        <UL>
+                        <LI>0(Zero)-If no error occurs.</LI>
+			<LI>#^errortext-If an error does occur. </LI>
+                        <P>The # is the number in the VA FileMan DIALOG
+			(#.84) file and the "errortext" describes the error.</P>
+                        </TD>
+                </TR>
+</Table>
+
+         <H4><A NAME="output">Example:     <br><br>EN^XPAR API-Example</A></H4>
+         <TABLE BORDER="1" CELLPADDING="5" BGCOLOR="#F1F2F3"
+         BORDERCOLORLIGHT="#F1F2F3" BORDERCOLORDARK="#808080" WIDTH="100%">
+                <TR>
+                  <TD VALIGN="TOP" WIDTH="100%"><PRE>>D EN^XPAR("SYS","XPAR TEST FREE TEXT",0,"Good times",.ERROR)
+			<br>>D EN^XPAR("SYS","XPAR TEST FREE TEXT",1,"to night",.ERROR) </PRE></TD>
+                </TR>
+
+         </TABLE>
+
+
+<P>&nbsp;</P> <HR COLOR="003399">
+         <TABLE WIDTH="100%" SUMMARY="This table for layout purposes only"
+         CLASS="white">
+                <TR>
+                  <TD ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">
+                         <!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm"
+             TAG="BODY" startspan -->
+    <P ALIGN="CENTER">
+        <A HREF="http://www.va.gov/"
+           CLASS="bodylink"
+           TARGET="_top"
+           TITLE="Department of Veterans Affairs Internet Home Page">
+           <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+           TITLE="Department of Veterans Affairs Intranet Home Page">
+           <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+
+    <A HREF="http://vaww.vhaco.va.gov/vhacio/"
+       CLASS="bodylink"
+       TARGET="_top"
+           TITLE="Office of Information Home Page">
+           <ACRONYM TITLE="Office of Information">OI</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+           TITLE="Product Development (PD) Home Page">
+           <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/iss/site_map.asp"
+       CLASS="bodylink"
+       TARGET="_top"
+           TITLE="Infrastructure & Security Services (ISS) Site Map">Site Map</A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+           TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+           TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+  <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+           TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+  <!--webbot bot="Include" endspan i-checksum="53201" --><!--Date content was reviewed or updated--><P ALIGN="CENTER"> Reviewed/Updated:
+             <!--webbot bot="Timestamp"
+             S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->May 3, 2018<!--webbot bot="Timestamp" endspan i-checksum="21789" -->
+                                <BR><BR>If you have questions, need more information, or are having
+                                accessibility problems with this website, please contact us by E-Mail:
+                                <A
+                                HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/apis/x-dea^xuser.shtml"
+                                TITLE="Send mail to the Webmasters regarding this page">Webmasters</A>, Phone:
+                                510-768-6800, or FAX: 510-768-6850.</P>
+                         <P>&nbsp; </P></TD>
+                </TR>
+         </TABLE> </BODY>
+</HTML>
+
+

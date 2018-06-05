@@ -1,0 +1,108 @@
+<HTML> 
+  <HEAD>
+<!-- Authored by OSEHRA -->
+<!-- Revised by Sam Habiel, July 2017 -->
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+    <TITLE>Kernel APIs: $$SHAN^XLFSHAN</TITLE>
+    <META NAME="subject" CONTENT="Kernel APIs: $$SHAN^XLFSHAN">
+    <META NAME="keywords"
+	      CONTENT="Infrastructure and Security Services,Information Infrastructure Service,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,device handler,supported">
+    <LINK REL="StyleSheet" TYPE="text/css" HREF="common/programmer.css"> 
+  </HEAD> 
+  <BODY> 
+<!--webbot bot="Include" U-Include="common/banner_api_page-kernel.htm" TAG="BODY" startspan -->
+<!--Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="0"
+	       CELLPADDING="6"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="65"> 
+	  <TR> 
+	    <TD VALIGN="middle"
+	        ALIGN="left"
+	        HEIGHT="30"> 
+		  <IMG SRC="images/kernel_heading_APIs-new.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0" width="429" height="29">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information & Technology (OIT) Banner"
+			   BORDER="0" width="429" height="30">
+	    </TD> 
+		<TD ALIGN="right"
+		    VALIGN="middle"
+		    HEIGHT="30"> 
+		  <P></P>
+		</TD> 
+	  </TR> 
+    </TABLE> 
+  <!--webbot bot="Include" endspan i-checksum="43655" --><P></P> 
+<!-- Content -->
+  <H3><A NAME="navskip">$$SHAN^XLFSHAN</A>: Returns SHA Hash for a Message</H3> 
+	<P>
+  <B>Reference Type:</B> Supported, 
+	<B>Category:</B> Data Security,
+	<B>Integration Agreement:</B> 6157</P> 
+	<H4><A NAME="description">Description</A></H4> 
+  <p>This extrinsic function returns the SHA hash of a message.</p>
+  <blockquote><strong>NOTE:</strong> This API was released with Kernel patch XU*8.0*657.</blockquote>
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>$$SHAN^XLFSHAN(hashlen,message)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TH VALIGN="TOP" WIDTH="15%">hashlen</TH> 
+		<TD VALIGN="TOP" WIDTH="85%">(required) The hash length in bits:
+			<UL>
+			  <li>160 (SHA-1)</li>
+			  <li>224 (SHA-224)</li>
+			  <li>256 (SHA-256)</li>
+			  <li>384 (SHA-384)</li>
+			  <li>512 (SHA-512)</li>
+			</UL>
+			</TD>
+    </TR>
+    <TR>
+			<TH VALIGN="TOP" WIDTH="15%">message</TH> 
+			<TD VALIGN="TOP" WIDTH="85%">(required) The message string.</TD> 
+    </TR>
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TH VALIGN="TOP" WIDTH="15%">Output</TD> 
+      <TD VALIGN="TOP" WIDTH="85%">
+				<ul>
+					<li>SHA hash if successful.</li>
+					<li>Zero (0) - If there is an error.</li>
+				</ul>
+			</TD>
+	  </TR> 
+	</TABLE> 
+	<P>&nbsp;</P>
+  <H4>Example</H4>
+  <pre>
+<strong>&gt;W $$SHAN^XLFSHAN(256,"this is a test")</strong>
+2E99758548972A8E8822AD47FA1017FF72F06F3FF6A016851F45C398732BC50C
+  </pre>
+	<HR COLOR="003399"> 
+<!-- End Content -->
+  </BODY>
+</HTML>
